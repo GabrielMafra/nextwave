@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String     @id @default(cuid())
+  email                 String     @unique
+  appleId               String?    @unique
+  fcmToken              String?
+  surfLevel             String     // "beginner", "intermediate", "advanced"
+  preferredWaveHeight   Float
+  windTolerance         Float
+  notificationThreshold Int        @default(70)
+  favoriteSpots         SurfSpot[] @relation("UserFavorites")
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+}
+
+model SurfSpot {
+  id           String      @id @default(cuid())
+  name         String
+  latitude     Float
+  longitude    Float
+  conditions   Condition[]
+  favoritedBy  User[]      @relation("UserFavorites")
+}
+
+model Condition {
+  id             String    @id @default(cuid())
+  spotId         String
+  spot           SurfSpot  @relation(fields: [spotId], references: [id], onDelete: Cascade)
+  waveHeight     Float
+  period         Float
+  direction      Float
+  windSpeed      Float
+  windDirection  Float
+  fetchedAt      DateTime  @default(now())
+
+  @@index([spotId, fetchedAt])
+}
