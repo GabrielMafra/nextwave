@@ -4,6 +4,7 @@ import authPlugin from './plugins/auth.js';
 import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
 import spotsRoutes from './routes/spots.js';
+import { startConditionsFetchJob } from './jobs/fetchConditions.js';
 
 const fastify = Fastify({ logger: true });
 
@@ -14,6 +15,8 @@ await fastify.register(profileRoutes);
 await fastify.register(spotsRoutes);
 
 fastify.get('/health', async () => ({ status: 'ok' }));
+
+startConditionsFetchJob();
 
 const start = async () => {
   try {
