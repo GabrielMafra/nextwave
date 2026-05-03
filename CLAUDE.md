@@ -10,7 +10,7 @@ The user sets up their profile once (surf level, preferred wave height, wind tol
 
 ## Who uses it
 
-Surfers of all levels, mainly beginners and intermediates who can't read technical surf forecasts. The app launches first in Brazil, focused on Brazilian beaches.
+Surfers of all levels, mainly beginners and intermediates who can't read technical surf forecasts. The app launches first in Portugal, focused on Portuguese beaches.
 
 ## How the app works (main flow)
 
