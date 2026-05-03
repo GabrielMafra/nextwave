@@ -2,12 +2,14 @@ import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import authPlugin from './plugins/auth.js';
 import authRoutes from './routes/auth.js';
+import profileRoutes from './routes/profile.js';
 
 const fastify = Fastify({ logger: true });
 
 await fastify.register(cors);
 await fastify.register(authPlugin);
 await fastify.register(authRoutes);
+await fastify.register(profileRoutes);
 
 fastify.get('/health', async () => ({ status: 'ok' }));
 
