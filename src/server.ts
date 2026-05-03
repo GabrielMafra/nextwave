@@ -1,13 +1,15 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
+import authPlugin from './plugins/auth.js';
+import authRoutes from './routes/auth.js';
 
 const fastify = Fastify({ logger: true });
 
 await fastify.register(cors);
+await fastify.register(authPlugin);
+await fastify.register(authRoutes);
 
-fastify.get('/health', async () => {
-  return { status: 'ok' };
-});
+fastify.get('/health', async () => ({ status: 'ok' }));
 
 const start = async () => {
   try {

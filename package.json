@@ -25,8 +25,11 @@
   "homepage": "https://github.com/GabrielMafra/nextwave#readme",
   "dependencies": {
     "@fastify/cors": "^11.2.0",
+    "@fastify/jwt": "^10.0.0",
     "@prisma/client": "^5.22.0",
+    "apple-signin-auth": "^2.0.0",
     "fastify": "^5.8.5",
+    "fastify-plugin": "^5.1.0",
     "node-cron": "^4.2.1"
   },
   "devDependencies": {
